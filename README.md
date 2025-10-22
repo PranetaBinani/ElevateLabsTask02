@@ -89,8 +89,34 @@ X-MS-Exchange-Organization-SCL: 5
 
 ✅ **Conclusion:** Strong evidence of a forged sender identity and spoofed origin.
 
+ ---
+
+ Perfect 👍 — yes, that’s exactly how a **README** for your *Phishing Email Header Analysis Project* should look.
+
+You’ve already written it correctly — it clearly explains:
+
+* the project purpose,
+* the 8-step process,
+* the tools used,
+* your findings,
+* and your interpretation for each step.
+
+✅ **Final confirmation:**
+If your repository contains:
+
+* `README.md` (this text),
+* `sample_email.txt`,
+* `Screenshot_2025-10-22_215103.png`,
+
+then your submission is **complete and professional**.
+
+Only one small improvement: wrap your multi-line “Steps 5–7” part in proper markdown formatting so it looks cleaner. Here's that section slightly corrected (just indentation + missing ``` close):
+
 ---
 
+### Corrected Part (from Step 4 onward)
+
+````markdown
 ## Step 4 — Identify Suspicious Links or Attachments
 
 The email body was encoded in Base64.  
@@ -98,64 +124,78 @@ Decoded it using the command:
 
 ```bash
 base64 --decode email_body_base64.txt > email_body.html
+````
 
-Finding:
+**Finding:**
 Links inside the email led to:
 
-http://blog1seguiment.com.br/... 
-
+```
+http://blog1seguiment.com.br/...
+```
 
 (not a Bradesco or Livelo domain)
 
-Interpretation:
+**Interpretation:**
 The attackers used a fake website mimicking Bradesco’s login page to steal credentials.
-
 No attachments were detected, but the external link itself is malicious.
 
-##*Step 5 — Look for Urgent or Threatening Language*
+---
 
-Subject Line:
+## Step 5 — Look for Urgent or Threatening Language
 
+**Subject Line:**
+
+```
 CLIENTE PRIME - BRADESCO LIVELO: Seu cartão tem 92.990 pontos LIVELO expirando hoje!
+```
 
+**Body Content Highlights:**
 
-Body Content Highlights:
+* Mentions expiring points and act today.
+* Uses urgency to make the user click quickly.
 
-Mentions expiring points and act today.
+**Interpretation:**
+This is **social engineering** — exploiting the fear of losing benefits to drive user action.
 
-Uses urgency to make the user click quickly.
+---
 
-Interpretation:
-This is social engineering — exploiting the fear of losing benefits to drive user action.
-
-##*Step 6 — Note Mismatched URLs*
+## Step 6 — Note Mismatched URLs
 
 Examining the decoded HTML revealed links such as:
 
+```html
 <a href="http://blog1seguiment.com.br/...">Acesse sua conta Bradesco</a>
+```
 
+**Visible text:** “Acesse sua conta Bradesco”
+**Actual link:** `blog1seguiment.com.br`
 
-Visible text: “Acesse sua conta Bradesco”
-Actual link: blog1seguiment.com.br
+✅ **Mismatch:** The visible text shows a trusted brand, but the link redirects to a fake domain — clear phishing technique.
 
-✅ Mismatch: The visible text shows a trusted brand, but the link redirects to a fake domain — clear phishing technique.
+---
 
-
-##*Step 7 — Check for Spelling or Grammar Errors*
+## Step 7 — Check for Spelling or Grammar Errors
 
 After decoding the Base64 HTML and converting it to plain text, several issues were visible:
 
-Awkward Portuguese grammar.
+* Awkward Portuguese grammar.
+* Random capitalizations.
+* Encoding artifacts (unnecessary symbols, wrong accents).
 
-Random capitalizations.
+**Example:**
 
-Encoding artifacts (unnecessary symbols, wrong accents).
+> “Clique AQUI para garantir seus pontos de fidelidade hoje mesmo!” — poor phrasing typical of automated phishing generators.
 
-Example:
-
-“Clique AQUI para garantir seus pontos de fidelidade hoje mesmo!” — poor phrasing typical of automated phishing generators.
-
-Interpretation:
+**Interpretation:**
 Poor grammar and non-professional formatting indicate that the message was not crafted by the legitimate organization.
 
+```
 
+ 
+
+
+
+
+
+ 
+ 
